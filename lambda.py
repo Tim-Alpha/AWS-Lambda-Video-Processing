@@ -120,14 +120,6 @@ def lambda_handler(event, context):
         job = client.create_job(Role=mediaConvertRole, UserMetadata=jobMetadata, Settings=jobSettings)
         print (json.dumps(job, default=str))
 
-        # Convert to GIF
-        conversion_success = convert_video_to_gif(local_video_path, local_gif_path)
-
-        if conversion_success:
-            print({'statusCode': 200, 'body': 'GIF conversion and upload successful'})
-        else:
-            print({'statusCode': 500, 'body': 'Failed to convert video to GIF'})
-
     except Exception as e:
         print ('Exception: %s' % e)
         statusCode = 500
